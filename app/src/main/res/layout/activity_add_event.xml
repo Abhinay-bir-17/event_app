@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="6dp"
+    tools:context=".AddEventActivity">
+
+    <TextView
+        android:id="@+id/addEventHeading"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:text="Add Event"
+        android:textColor="@color/electronBlue"
+        android:textSize="34sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_done_outline_24"
+        android:backgroundTint="@color/electronBlue"
+        />
+    <!--        android:layout_alignTop="@id/addNoteHeading" -->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/saveButton"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/baseline_done_24"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignTop="@id/addNoteHeading"-->
+    <!--        android:layout_marginEnd="6dp"-->
+
+    <!--        />-->
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter name of event"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:layout_below="@id/addEventHeading"
+        android:background="@drawable/blue_border"
+        android:layout_marginTop="16dp"
+
+        android:maxLines="1"
+        />
+
+    <EditText
+        android:id="@+id/contentEditText"
+        android:layout_width="370dp"
+        android:layout_height="115dp"
+        android:layout_below="@id/titleEditText"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/blue_border"
+        android:gravity="top"
+        android:hint="Describe the event"
+        android:padding="12dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/pickDateButton"
+        android:layout_width="362dp"
+        android:layout_height="51dp"
+        android:layout_below="@+id/selectedDateTextView"
+        android:layout_alignParentStart="true"
+        android:text="Pick Date"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/pickTimeButton"
+        android:layout_width="367dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Pick Time"
+        android:layout_below="@+id/selectedTimeTextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/selectedDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contentEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="26dp"
+        android:text="Selected Date:" />
+
+    <TextView
+        android:id="@+id/selectedTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pickDateButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:text="Selected Time:" />
+
+    <Button
+        android:id="@+id/pickLocation"
+        android:layout_width="367dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Select Location"
+        android:layout_below="@+id/pickTimeButton"
+        android:layout_marginTop="26dp"
+        android:textSize="20sp" />
+</RelativeLayout>
