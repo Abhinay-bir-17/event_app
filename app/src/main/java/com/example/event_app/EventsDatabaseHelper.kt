@@ -54,13 +54,48 @@ class EventsDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE
             val id = cursor.getInt(cursor.getColumnIndexOrThrow (COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow (COLUMN_TITLE))
             val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
-            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
-            val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
-            val event = Event(id, title, content,date,time)
+            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
+            val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+            val event = Event(id, title, content,time,date)
             eventsList.add(event)
         }
         cursor.close()
         db.close()
         return eventsList
+    }
+    fun updateEvent (event: Event) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_TITLE, event.title)
+            put(COLUMN_CONTENT, event.content)
+            put(COLUMN_DATE, event.date)
+            put(COLUMN_TIME, event.time)
+        }
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(event.id.toString())
+        db.update(TABLE_NAME, values, whereClause, whereArgs)
+        db.close()
+    }
+
+    fun getEventByID(eventId: Int):Event{
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $eventId"
+        val cursor = db.rawQuery(query, null)
+        cursor.moveToFirst()
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow (COLUMN_ID))
+        val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+        val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+        val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
+        cursor.close()
+        db.close()
+        return Event(id, title, content,date,time)
+    }
+    fun deleteNote(eventId: Int){
+        val db = writableDatabase
+        val whereClause  = "$COLUMN_ID =?"
+        val whereArgs = arrayOf(eventId.toString())
+        db.delete(TABLE_NAME,whereClause,whereArgs)
+        db.close()
     }
 }

@@ -1,10 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="6dp"
     tools:context=".UpdateEventActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/editEventHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:text="Update Event"
+        android:textColor="@color/electronBlue"
+        android:textSize="34sp" />
+    <Button
+        android:id="@+id/goBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+
+        android:text="Go Back"
+        android:textSize="18sp" />
+    <ImageView
+        android:id="@+id/updateSaveButton"
+        android:layout_width="34dp"
+        android:layout_height="64dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_done_outline_24"
+        android:backgroundTint="@color/electronBlue"
+
+        />
+
+    <!--        android:layout_alignTop="@id/addNoteHeading" -->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/saveButton"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/baseline_done_24"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignTop="@id/addNoteHeading"-->
+    <!--        android:layout_marginEnd="6dp"-->
+
+    <!--        />-->
+
+    <EditText
+        android:id="@+id/editTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter name of event"
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:layout_below="@id/editEventHeading"
+        android:background="@drawable/blue_border"
+        android:layout_marginTop="16dp"
+
+        android:maxLines="1"
+        />
+
+    <EditText
+        android:id="@+id/editContentEditText"
+        android:layout_width="370dp"
+        android:layout_height="115dp"
+        android:layout_below="@id/editTitleEditText"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/blue_border"
+        android:gravity="top"
+        android:hint="Describe the event"
+        android:padding="12dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/editDateButton"
+        android:layout_width="362dp"
+        android:layout_height="51dp"
+        android:layout_below="@+id/editSelectedDateTextView"
+        android:layout_alignParentStart="true"
+        android:text="Pick Date"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/editTimeButton"
+        android:layout_width="367dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Pick Time"
+        android:layout_below="@+id/editSelectedTimeTextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/editSelectedDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editContentEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="26dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/editSelectedTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editDateButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:text=""
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/editLocation"
+        android:layout_width="367dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Select Location"
+        android:layout_below="@+id/selectedLocation"
+
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/selectedLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTimeButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:text=""
+        android:textSize="20sp"
+        />
+</RelativeLayout>

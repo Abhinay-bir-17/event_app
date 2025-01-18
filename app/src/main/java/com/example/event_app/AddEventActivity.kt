@@ -43,7 +43,7 @@ class AddEventActivity : AppCompatActivity() {
             else if (time.isEmpty()) {
                 Toast.makeText(this@AddEventActivity, "Please select a time", Toast.LENGTH_LONG).show()
             } else {
-                val event = Event(0, title, content,time,date)// id will start from 0
+                val event = Event(0, title, content,date,time)// id will start from 0
                 db.insertEvent(event)
                 finish()
                 Toast.makeText(this, "Event Saved", Toast.LENGTH_SHORT).show()
@@ -59,6 +59,9 @@ class AddEventActivity : AppCompatActivity() {
 //            // focus abhinay bir you can do it...
 //
 //        }
+        binding.goBackButton.setOnClickListener(){
+            finish()
+        }
     }
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()

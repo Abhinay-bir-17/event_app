@@ -17,10 +17,11 @@ class EventsAdapter (private var events: List<Event>, context: Context) : Recycl
         val contentTextView: TextView = itemView.findViewById(R.id.contentTextView)
         val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
         val timeTextView: TextView = itemView.findViewById(R.id.timeTextView)
-//        val updateButton: ImageView = itemView.findViewById(R.id.updateButton)
-//        val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
+        val updateButton: ImageView = itemView.findViewById(R.id.updateButton)
+        val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
     }
-    // here we set up item layout view
+
+    // here we set up item layout view, so focus here
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder{
         val view = LayoutInflater.from(parent.context).inflate(R.layout.event_item, parent,false)
         return EventViewHolder(view)
@@ -33,18 +34,18 @@ class EventsAdapter (private var events: List<Event>, context: Context) : Recycl
         holder.contentTextView.text = event.content
         holder.timeTextView.text = event.time
         holder.dateTextView.text = event.date
-//        holder.updateButton.setOnClickListener {
-//            val intent = Intent(holder.itemView.context, UpdateEventActivity::class.java).apply {
-//                putExtra("note_id",event.id)
-//            }
-//            holder.itemView.context.startActivity(intent)
-//        }
-//        holder.deleteButton.setOnClickListener(){
-//            db.deleteNote((note.id))
-//            // now reload the data & get fresh list of nodes
-//            refreshData(db.getAllNotes())
-//            Toast.makeText(holder.itemView.context,"Note deleted!", Toast.LENGTH_SHORT).show()
-//        }
+        holder.updateButton.setOnClickListener {
+            val intent = Intent(holder.itemView.context, UpdateEventActivity::class.java).apply {
+                putExtra("event_id",event.id)
+            }
+            holder.itemView.context.startActivity(intent)
+        }
+        holder.deleteButton.setOnClickListener(){
+            db.deleteNote((event.id))
+//             now reload the data & get fresh list of nodes
+            refreshData(db.getAllNotes())
+            Toast.makeText(holder.itemView.context,"Note deleted!", Toast.LENGTH_SHORT).show()
+        }
     }
     fun refreshData(newEvents: List<Event>){
         events =  newEvents
