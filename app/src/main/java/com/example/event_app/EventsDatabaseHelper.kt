@@ -17,7 +17,7 @@ class EventsDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE
         private const val COLUMN_CONTENT = "content"
         private const val COLUMN_DATE = "date"
         private const val COLUMN_TIME = "time"
-    }
+    } // focus
     //  we will create table using create table query
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableQuery = "CREATE TABLE $TABLE_NAME ($COLUMN_ID INTEGER PRIMARY KEY, $COLUMN_TITLE TEXT, $COLUMN_CONTENT TEXT, $COLUMN_DATE TEXT, $COLUMN_TIME TEXT)"
@@ -38,7 +38,6 @@ class EventsDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE
             put(COLUMN_CONTENT, event.content)
             put(COLUMN_DATE, event.date)
             put(COLUMN_TIME, event.time)
-
         }
         db.insert(TABLE_NAME, null, values)
         db.close()
@@ -54,9 +53,9 @@ class EventsDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE
             val id = cursor.getInt(cursor.getColumnIndexOrThrow (COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow (COLUMN_TITLE))
             val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
-            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
-            val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
-            val event = Event(id, title, content,time,date)
+            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+            val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
+            val event = Event(id, title, content,date,time)
             eventsList.add(event)
         }
         cursor.close()

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +20,7 @@ class EventsAdapter (private var events: List<Event>, context: Context) : Recycl
         val timeTextView: TextView = itemView.findViewById(R.id.timeTextView)
         val updateButton: ImageView = itemView.findViewById(R.id.updateButton)
         val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
+        val viewAttendeeButton: Button = itemView.findViewById(R.id.viewAttendeeButton)
     }
 
     // here we set up item layout view, so focus here
@@ -35,8 +37,10 @@ class EventsAdapter (private var events: List<Event>, context: Context) : Recycl
         holder.timeTextView.text = event.time
         holder.dateTextView.text = event.date
         holder.updateButton.setOnClickListener {
+//            holder.itemView.context is used to access updateButton in note_item
             val intent = Intent(holder.itemView.context, UpdateEventActivity::class.java).apply {
                 putExtra("event_id",event.id)
+
             }
             holder.itemView.context.startActivity(intent)
         }
@@ -45,6 +49,17 @@ class EventsAdapter (private var events: List<Event>, context: Context) : Recycl
 //             now reload the data & get fresh list of nodes
             refreshData(db.getAllNotes())
             Toast.makeText(holder.itemView.context,"Note deleted!", Toast.LENGTH_SHORT).show()
+        }
+        holder.viewAttendeeButton.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ViewAttendeesActivity::class.java).apply {
+                putExtra("event_id",event.id)
+                putExtra("event_title",event.title)
+                putExtra("event_content",event.content)
+
+            }
+            holder.itemView.context.startActivity(intent)
+            Toast.makeText(holder.itemView.context,"sent event.id :${event.id}", Toast.LENGTH_LONG).show()
+//            Toast.makeText(holder.itemView.context,"sent event title: ${event.title}", Toast.LENGTH_LONG).show()
         }
     }
     fun refreshData(newEvents: List<Event>){
